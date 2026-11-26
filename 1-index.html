@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>درب | منصة تعلّم البرمجة بالعربي</title>
+<meta name="description" content="درب: منصة تعلّم البرمجة بالعربي، دروس قصيرة وتمارين تفاعلية ومشاريع حقيقية.">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="progress" id="progress"></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top"><span class="logo-mark">د</span>درب</a>
+  <nav class="links" id="links" aria-label="القائمة">
+    <a href="#features">المميزات</a>
+    <a href="#paths">المسارات</a>
+    <a href="#demo">جرّب</a>
+    <a href="#team">الفريق</a>
+    <a href="#faq">أسئلة</a>
+    <a href="#contact" class="cta-mini">ابدأ</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false"><i></i><i></i><i></i></button>
+</header>
+
+<main id="top">
+  <!-- HERO with lamp theme switch -->
+  <section class="hero">
+    <div class="lamp-wrap">
+      <button class="lamp" id="lamp" aria-label="تبديل الوضع الليلي والنهاري">
+        <span class="cord"></span>
+        <span class="shade"></span>
+        <span class="beam"></span>
+      </button>
+    </div>
+    <p class="eyebrow reveal">اسحب الحبل وغيّر الإضاءة</p>
+    <h1 class="reveal">تعلّم البرمجة <span class="grad">بالعربي</span><br>وخلّي الكود يتحرّك</h1>
+    <p class="lead reveal">دروس قصيرة، تمارين تتجرّب في الموبايل، ومشاريع حقيقية تعملها بإيدك. من الصفر لحد أول موقع بتنشره.</p>
+    <div class="hero-cta reveal">
+      <a href="#contact" class="btn primary">ابدأ مجاناً</a>
+      <a href="#demo" class="btn ghost">شوف تجربة</a>
+    </div>
+    <div class="stats reveal">
+      <div><b data-count="120">0</b><span>درس قصير</span></div>
+      <div><b data-count="45">0</b><span>تمرين تفاعلي</span></div>
+      <div><b data-count="12">0</b><span>مشروع</span></div>
+    </div>
+    <span class="fireflies" id="fireflies" aria-hidden="true"></span>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="track"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Git</span><span>React</span><span>مشاريع</span><span>تمارين</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Git</span><span>React</span><span>مشاريع</span><span>تمارين</span></div></div>
+
+  <!-- FEATURES: 3D flip dock -->
+  <section id="features" class="sec">
+    <h2 class="reveal">ليه <span class="grad">درب</span>؟</h2>
+    <p class="sub reveal">لمس أي بطاقة وهتتقلب وتكشف السر.</p>
+    <div class="flips">
+      <button class="flip reveal" aria-label="بطاقة: قصير"><span class="face front"><em>⏱</em><strong>قصير</strong></span><span class="face back"><b>٥ دقايق</b>كل درس يتخلص في فنجان قهوة.</span></button>
+      <button class="flip reveal" aria-label="بطاقة: تفاعلي"><span class="face front"><em>⚡</em><strong>تفاعلي</strong></span><span class="face back"><b>اكتب وشوف</b>النتيجة قدامك لحظياً.</span></button>
+      <button class="flip reveal" aria-label="بطاقة: موبايل"><span class="face front"><em>📱</em><strong>موبايل</strong></span><span class="face back"><b>من تليفونك</b>مش محتاج لاب توب تبدأ.</span></button>
+      <button class="flip reveal" aria-label="بطاقة: مشاريع"><span class="face front"><em>🚀</em><strong>مشاريع</strong></span><span class="face back"><b>حقيقية</b>تطلع بموقع وتطبيق في ملفك.</span></button>
+      <button class="flip reveal" aria-label="بطاقة: بالعربي"><span class="face front"><em>🗣</em><strong>بالعربي</strong></span><span class="face back"><b>بلهجتك</b>شرح بسيط من غير تعقيد.</span></button>
+      <button class="flip reveal" aria-label="بطاقة: مجاني"><span class="face front"><em>🎁</em><strong>مجاني</strong></span><span class="face back"><b>البداية ببلاش</b>وادفع بس لو عايز تكمل أكتر.</span></button>
+    </div>
+  </section>
+
+  <!-- PATHS: swipe carousel + tilt -->
+  <section id="paths" class="sec">
+    <h2 class="reveal">اختار <span class="grad">مسارك</span></h2>
+    <p class="sub reveal">اسحب يمين وشمال أو استخدم الأسهم.</p>
+    <div class="slider" id="slider">
+      <div class="viewport" id="viewport">
+        <div class="rail" id="rail">
+          <article class="card tilt" style="--h:260"><div class="ico">🌐</div><h3>تطوير الويب</h3><p>من أول سطر كود لحد موقع كامل بتنشره.</p><ul><li>٣٢ درس</li><li>٦ مشاريع</li></ul><div class="bar"><i style="--w:78%"></i></div></article>
+          <article class="card tilt" style="--h:160"><div class="ico">🐍</div><h3>بايثون</h3><p>أساسيات البرمجة وحل المشكلات بطريقة سهلة.</p><ul><li>٤٠ درس</li><li>٤ مشاريع</li></ul><div class="bar"><i style="--w:64%"></i></div></article>
+          <article class="card tilt" style="--h:200"><div class="ico">🎨</div><h3>تصميم الواجهات</h3><p>حركات وألوان وتجربة استخدام تبهر.</p><ul><li>٢٤ درس</li><li>٣ مشاريع</li></ul><div class="bar"><i style="--w:52%"></i></div></article>
+          <article class="card tilt" style="--h:320"><div class="ico">🤖</div><h3>الذكاء الاصطناعي</h3><p>اتعلم تستخدم النماذج وتبني أدوات ذكية.</p><ul><li>٢٠ درس</li><li>٢ مشروع</li></ul><div class="bar"><i style="--w:38%"></i></div></article>
+        </div>
+      </div>
+      <div class="ctrl">
+        <button class="arrow" id="next" aria-label="التالي">‹</button>
+        <div class="dots" id="dots"></div>
+        <button class="arrow" id="prev" aria-label="السابق">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO: live code with cat mascot -->
+  <section id="demo" class="sec">
+    <h2 class="reveal">جرّب <span class="grad">بنفسك</span></h2>
+    <p class="sub reveal">اكتب اسمك والقطة هتتابعك. المحرر شغال بجد.</p>
+    <div class="demo-grid">
+      <form class="login reveal" id="loginForm" onsubmit="return false">
+        <div class="cat" id="cat" aria-hidden="true">
+          <i class="ear l"></i><i class="ear r"></i>
+          <div class="face2"><span class="eye l"><b></b></span><span class="eye r"><b></b></span><span class="nose"></span></div>
+          <i class="paw l"></i><i class="paw r"></i>
+        </div>
+        <label>اسمك<input id="nameIn" type="text" placeholder="اكتب اسمك" autocomplete="off"></label>
+        <label>كلمة السر<input id="passIn" type="password" placeholder="••••••••" autocomplete="off"></label>
+        <button class="btn primary full" id="loginBtn" type="button">دخول</button>
+        <p class="hello" id="hello" aria-live="polite"></p>
+      </form>
+      <div class="editor reveal">
+        <div class="tabs"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><b>تجربة حية</b></div>
+        <label class="lbl" for="code">غيّر الكود:</label>
+        <textarea id="code" dir="ltr" spellcheck="false" rows="5">&lt;h2 style="color:#ffd24a"&gt;أهلاً بيك في درب 👋&lt;/h2&gt;
+&lt;button&gt;اضغط عليا&lt;/button&gt;</textarea>
+        <div class="out" id="out"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM slider -->
+  <section id="team" class="sec">
+    <h2 class="reveal">فريق <span class="grad">درب</span></h2>
+    <div class="team" id="team-el">
+      <div class="tcards" id="tcards"></div>
+      <div class="tinfo"><h3 id="tname"></h3><p id="trole"></p></div>
+      <div class="ctrl"><button class="arrow" id="tnext" aria-label="التالي">‹</button><button class="arrow" id="tprev" aria-label="السابق">›</button></div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="sec">
+    <h2 class="reveal">قالوا <span class="grad">إيه؟</span></h2>
+    <div class="reviews">
+      <blockquote class="reveal">"أول مرة أفهم الـ CSS من غير ما أزهق."<cite>— طالب ثانوي</cite></blockquote>
+      <blockquote class="reveal">"عملت أول موقع ليا ونشرته في أسبوعين."<cite>— مبتدئ</cite></blockquote>
+      <blockquote class="reveal">"الشرح بالعربي فرق معايا جداً."<cite>— طالبة جامعة</cite></blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="sec">
+    <h2 class="reveal">أسئلة <span class="grad">شائعة</span></h2>
+    <div class="faq">
+      <details class="reveal"><summary>محتاج خبرة قبل ما أبدأ؟</summary><p>لا. بنبدأ من الصفر وبنمشي خطوة خطوة.</p></details>
+      <details class="reveal"><summary>أقدر أتعلم من الموبايل بس؟</summary><p>أيوه، الدروس والتمارين مصممة للموبايل.</p></details>
+      <details class="reveal"><summary>فيه شهادة؟</summary><p>بتاخد شهادة إتمام عن كل مسار بعد المشروع الأخير.</p></details>
+      <details class="reveal"><summary>الأسعار إيه؟</summary><p>البداية مجانية، وفيه خطط مدفوعة اختيارية للمزيد.</p></details>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="sec final">
+    <h2 class="reveal">جاهز تبدأ <span class="grad">دربك؟</span></h2>
+    <p class="sub reveal">سيب إيميلك وهنبعتلك أول درس.</p>
+    <form class="join reveal" id="join" onsubmit="return false">
+      <input id="mail" type="email" inputmode="email" placeholder="اكتب إيميلك" aria-label="الإيميل">
+      <button class="btn primary" id="joinBtn" type="button">انضم</button>
+    </form>
+    <p class="hello" id="joinMsg" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer class="foot">© درب — موقع تجريبي ثابت، النموذج لا يرسل بيانات لأي مكان.</footer>
+<script src="script.js"></script>
+</body>
+</html>
