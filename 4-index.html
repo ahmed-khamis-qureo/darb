@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>درب | مساعد المذاكرة</title>
+<meta name="description" content="درب: مؤقت تركيز، مهام، بطاقات مراجعة، ملاحظات وإحصائيات. كل بياناتك على جهازك.">
+<meta name="theme-color" content="#0a0b16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bgfx" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="top">
+  <div class="brand"><span class="mark">د</span><b>درب</b></div>
+  <div class="lvl" id="lvlChip" title="مستواك"><span id="lvlN">مستوى ١</span><div class="lvlbar"><i id="lvlBar"></i></div></div>
+  <button class="icon-btn" id="openSet" aria-label="الإعدادات">⚙️</button>
+</header>
+
+<main id="app">
+  <!-- HOME -->
+  <section class="view active stg" id="v-home" data-title="الرئيسية">
+    <div class="hello"><h1 id="greet">أهلاً</h1><p id="quote" class="quote"></p></div>
+    <div class="card goal">
+      <div class="ringw"><svg viewBox="0 0 120 120"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--a)"/><stop offset="1" stop-color="var(--c)"/></linearGradient></defs><circle class="r-bg" cx="60" cy="60" r="52"/><circle class="r-fg" id="goalArc" cx="60" cy="60" r="52"/></svg><div class="ring-in"><b id="goalMin">٠</b><span>دقيقة اليوم</span></div></div>
+      <div class="goal-side"><h3>هدف اليوم</h3><p id="goalTxt"></p><div class="streak">🔥 <b id="streakN">٠</b> يوم متتالي</div></div>
+    </div>
+    <div class="grid2">
+      <button class="card mini tap" data-go="tasks"><span class="mi">✅</span><b id="hTasks">٠</b><small>مهام باقية</small></button>
+      <button class="card mini tap" data-go="cards"><span class="mi">🃏</span><b id="hCards">٠</b><small>بطاقة للمراجعة</small></button>
+      <button class="card mini tap" data-go="focus"><span class="mi">⏱</span><b id="hSess">٠</b><small>جلسة تركيز</small></button>
+      <button class="card mini tap" data-go="stats"><span class="mi">📊</span><b id="hTotal">٠</b><small>دقيقة إجمالي</small></button>
+    </div>
+    <button class="btn primary full big magnet" data-go="focus">ابدأ جلسة تركيز ▶</button>
+  </section>
+
+  <!-- FOCUS -->
+  <section class="view stg" id="v-focus" data-title="تركيز">
+    <div class="seg" id="modeSeg"><button class="on" data-m="25">٢٥ د</button><button data-m="45">٤٥ د</button><button data-m="60">٦٠ د</button><button data-m="5">راحة ٥</button></div>
+    <div class="card timer">
+      <div class="tring"><svg viewBox="0 0 200 200"><circle class="r-bg" cx="100" cy="100" r="90"/><circle class="r-fg" id="tArc" cx="100" cy="100" r="90"/></svg>
+        <div class="t-in"><b id="tTime">٢٥:٠٠</b><span id="tLabel">جاهز للتركيز</span></div></div>
+      <label class="tl">بتذاكر إيه؟<input id="topic" type="text" placeholder="مثال: JavaScript" maxlength="40" autocomplete="off"></label>
+      <div class="row"><button class="btn primary" id="tStart">ابدأ</button><button class="btn ghost" id="tReset">إعادة</button></div>
+    </div>
+    <p class="hint" id="tHint">الوقت بيمشي حتى لو قفلت الشاشة، وهتسمع نغمة لما يخلص.</p>
+  </section>
+
+  <!-- TASKS -->
+  <section class="view stg" id="v-tasks" data-title="مهام">
+    <form class="addrow" id="taskForm" onsubmit="return false">
+      <input id="taskIn" type="text" placeholder="اكتب مهمة جديدة" maxlength="80" autocomplete="off" aria-label="مهمة جديدة">
+      <button class="btn primary" id="taskAdd" type="button">إضافة</button>
+    </form>
+    <div class="chips" id="taskChips"><button class="on" data-f="all">الكل</button><button data-f="open">باقية</button><button data-f="done">خلصت</button></div>
+    <div class="tbar"><div class="tbar-i" id="taskBar"></div></div>
+    <ul class="tasks" id="taskList"></ul>
+    <p class="empty" id="taskEmpty">مفيش مهام هنا. ضيف أول مهمة 👆</p>
+  </section>
+
+  <!-- CARDS -->
+  <section class="view stg" id="v-cards" data-title="بطاقات">
+    <div class="cards-head"><span id="cStat">٠ / ٠</span><div class="row"><button class="btn ghost sm" id="openQuiz">🎯 اختبار</button><button class="btn ghost sm" id="openAdd">➕ بطاقة</button></div></div>
+    <div class="deck" id="deck" aria-live="polite"></div>
+    <div class="swipe-btns"><button class="sb no" id="cNo" aria-label="مش عارفها">✗</button><button class="sb ok" id="cYes" aria-label="عارفها">✓</button></div>
+    <p class="hint">اضغط على البطاقة لتقلبها. اسحب يمين لو عارفها ويسار لو لسه.</p>
+  </section>
+
+  <!-- NOTES -->
+  <section class="view stg" id="v-notes" data-title="ملاحظات">
+    <div class="note-head"><h3>ملاحظاتي</h3><span class="saved" id="saved">محفوظ ✓</span></div>
+    <textarea id="notes" class="notes" placeholder="اكتب أي حاجة عايز تفتكرها..." aria-label="ملاحظات"></textarea>
+    <div class="note-foot"><span id="wc">٠ كلمة</span><button class="btn ghost sm" id="clearNotes">مسح</button></div>
+  </section>
+
+  <!-- STATS -->
+  <section class="view stg" id="v-stats" data-title="إحصائيات">
+    <div class="card"><h3>آخر ٧ أيام (دقايق تركيز)</h3><div class="chart" id="chart"></div></div>
+    <div class="grid2">
+      <div class="card mini"><b id="sTotal">٠</b><small>دقيقة إجمالي</small></div>
+      <div class="card mini"><b id="sSess">٠</b><small>جلسة</small></div>
+      <div class="card mini"><b id="sDone">٠</b><small>مهمة خلصت</small></div>
+      <div class="card mini"><b id="sBest">٠</b><small>أطول تتابع</small></div>
+    </div>
+    <div class="card"><h3>إنجازاتك</h3><div class="badges" id="badges"></div></div>
+  </section>
+</main>
+
+<nav class="tabs" id="tabs" aria-label="التنقل">
+  <i class="pill" id="pill"></i>
+  <button data-go="home" class="on"><span>🏠</span><em>الرئيسية</em></button>
+  <button data-go="focus"><span>⏱</span><em>تركيز</em></button>
+  <button data-go="tasks"><span>✅</span><em>مهام</em></button>
+  <button data-go="cards"><span>🃏</span><em>بطاقات</em></button>
+  <button data-go="notes"><span>📝</span><em>ملاحظات</em></button>
+  <button data-go="stats"><span>📊</span><em>أرقام</em></button>
+</nav>
+
+<!-- settings sheet -->
+<div class="sheet" id="setSheet" aria-hidden="true"><div class="scrim" data-close></div><div class="panel">
+  <div class="grab"></div><h3>الإعدادات</h3>
+  <label class="fld">لون التطبيق<input type="range" id="hue" min="0" max="360" value="265"></label>
+  <div class="row between"><span>الوضع</span><div class="seg inl" id="themeSeg"><button data-t="dark" class="on">ليلي</button><button data-t="light">نهاري</button></div></div>
+  <div class="row between"><span>هدف اليوم (دقيقة)</span><div class="stepper"><button id="gMinus" aria-label="أقل">−</button><b id="gVal">٦٠</b><button id="gPlus" aria-label="أكتر">+</button></div></div>
+  <div class="row between"><span>صوت ونغمة</span><button class="switch on" id="soundSw" role="switch" aria-checked="true"><i></i></button></div>
+  <div class="row"><button class="btn ghost" id="exportBtn">⬇ نسخة احتياطية</button><label class="btn ghost filebtn">⬆ استرجاع<input type="file" id="importFile" accept="application/json" hidden></label></div>
+  <button class="btn danger full" id="resetBtn">مسح كل البيانات</button>
+  <button class="btn primary full" data-close>تمام</button>
+</div></div>
+
+<!-- add card sheet -->
+<div class="sheet" id="addSheet" aria-hidden="true"><div class="scrim" data-close></div><div class="panel">
+  <div class="grab"></div><h3>بطاقة جديدة</h3>
+  <label class="fld">السؤال / الوجه الأمامي<input id="cFront" type="text" maxlength="80" autocomplete="off"></label>
+  <label class="fld">الإجابة / الوجه الخلفي<input id="cBack" type="text" maxlength="120" autocomplete="off"></label>
+  <button class="btn primary full" id="cSave">حفظ البطاقة</button>
+  <h4>بطاقاتك</h4><ul class="clist" id="cList"></ul>
+</div></div>
+
+<!-- quiz sheet -->
+<div class="sheet" id="quizSheet" aria-hidden="true"><div class="scrim" data-close></div><div class="panel tall">
+  <div class="grab"></div>
+  <div class="q-top"><span id="qn"></span><div class="qbar"><i id="qbar"></i></div><span id="qs">⭐ ٠</span></div>
+  <h3 id="qq"></h3><div class="opts" id="opts"></div><p class="fb" id="fb" aria-live="polite"></p>
+  <button class="btn ghost full" data-close>إغلاق</button>
+</div></div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
